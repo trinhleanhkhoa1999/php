@@ -1,0 +1,32 @@
+Ma ket
+23/12 - 19/1 
+
+Input
+N1:	01/12 => false
+N2:	30/12 => true
+N3:	01/01 => true
+N4:	30/01 => false
+
+23/12 <= input <= 19/1
+
+23/12/2020 <= input <= 19/01/2021
+
+N1: 23/12/2021 <= N1(01/12/2021) <= 19/01/2022 => false
+N2: 23/12/2021 <= N2(30/12/2021) <= 19/01/2022 => true
+N3: 23/12/2020 <= N3(01/01/2021) <= 19/01/2021 => true
+N4: 23/12/2020 <= N4(30/01/2021) <= 19/01/2021 => false
+
+
+SQL:
+
+SELECT 
+`name`
+FROM `table1` WHERE 
+(STR_TO_DATE('2021-01-30','%Y-%m-%d') BETWEEN STR_TO_DATE(CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate),'%Y-%m-%d') AND STR_TO_DATE(DATE_ADD(CONCAT(DATE_FORMAT(now(),'%Y'),'-',lastDate),INTERVAL `step` YEAR),'%Y-%m-%d')) OR
+(STR_TO_DATE('2021-01-30','%Y-%m-%d') BETWEEN STR_TO_DATE(DATE_ADD(CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate),INTERVAL -`step` YEAR),'%Y-%m-%d') AND STR_TO_DATE(CONCAT(DATE_FORMAT(now(),'%Y'),'-',lastDate),'%Y-%m-%d'))
+
+
+CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate) => convert to datetime string
+STR_TO_DATE => parse to datetime
+(STR_TO_DATE('2021-01-30','%Y-%m-%d') BETWEEN STR_TO_DATE(CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate),'%Y-%m-%d') AND STR_TO_DATE(DATE_ADD(CONCAT(DATE_FORMAT(now(),'%Y'),'-',lastDate),INTERVAL `step` YEAR),'%Y-%m-%d')) => now to feature
+(STR_TO_DATE('2021-01-30','%Y-%m-%d') BETWEEN STR_TO_DATE(DATE_ADD(CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate),INTERVAL -`step` YEAR),'%Y-%m-%d') AND STR_TO_DATE(CONCAT(DATE_FORMAT(now(),'%Y'),'-',lastDate),'%Y-%m-%d')) => past to now

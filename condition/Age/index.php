@@ -1,9 +1,7 @@
 <?php 
 include 'dbTable.php';
 
-$getStar = getDB();
-echo '<pre>';
-print_r($getStar);
+
 
 
 
@@ -13,14 +11,18 @@ $mon = "";
 $img    = "";
 $name   = "";
 $nameEN = "";
-$time   = "";
-
+$firstDate = "";
+$lastDate  = "";
 
 
 
 if(isset($_POST["day"]) && isset($_POST["mon"])){
     $day = $_POST["day"];
     $mon = $_POST["mon"];
+    $getStar = getDB($day, $mon);
+    // echo '<pre>';
+    // print_r($getStar);
+
 }
 if((is_numeric($day)) && (is_numeric($mon))){
     /**
@@ -39,8 +41,8 @@ if((is_numeric($day)) && (is_numeric($mon))){
     */
     switch ($mon) {
         case '1':
-            if($day <= 19) { $img = $getStar[0]['img']; $name   = $getStar[0]["name"]; $nameEN = $getStar[0]["nameEN"]; $time   = $getStar[0]["time"];} 
-            if($day >= 20) { $img = $getStar[1]['img']; $name   = "Cung Bao Binh"; $nameEN = "Aquarius"; $time   = "20/01 - 19/02";}
+            if($day <= 19) { $img = $getStar[0]['img']; $name   = $getStar[0]["name"]; $nameEN = $getStar[0]["nameEN"]; $time   = $getStar[0]["firstDate"]; $getStar[0]["lastDate"];} 
+            if($day >= 20) { $img = $getStar[1]['img']; $name   = $getStar[1]["name"]; $nameEN = $getStar[1]["nameEN"]; $time   = $getStar[1]["firstDate"]; $getStar[1]["lastDate"];}
         break;
         case '2':
             if($day <= 19) { $img = "CungBaoBinh.png"; $name   = "Cung Bao Binh";$nameEN = "Aquarius";$time   = "20/01 - 19/02";}
@@ -114,7 +116,7 @@ if((is_numeric($day)) && (is_numeric($mon))){
         <?php 
             $result =   '<div class="row">
                             <img src="../Age/img/'. $img .'" alt="'. $img .'">
-                            <p>'. $name .' <span> ('. $nameEN .' : '. $time .') </span></p>
+                            <p>'. $name .' <span> ('. $nameEN .' : '. $firstDate .''. $lastDate.') </span></p>
                         </div>';
             echo $result;
            

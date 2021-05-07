@@ -4,11 +4,7 @@ include 'dbTable.php';
 $day = "";
 $mon = "";
 
-$img    = "";
-$name   = "";
-$nameEN = "";
-$firstDate = "";
-$lastDate  = "";
+
 $getStar[0]['img'] = "";
 $getStar[0]['name'] = "";
 $getStar[0]['nameEN'] = "";

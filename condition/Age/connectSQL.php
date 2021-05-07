@@ -11,6 +11,7 @@ function connectDB(){
     die("Connection failed: " . $conn->connect_error);
   }else{
     // echo "connect thanh cong";
+    $conn -> set_charset("utf8");
   }
   return $conn;
 }

@@ -1,16 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css?v=1.0">
+    <title>Document</title>
+</head>
 <?php 
 include 'dbTable.php';
 
 $day = "";
 $mon = "";
 
-$img    = "";
-$name   = "";
-$nameEN = "";
-$firstDate = "";
-$lastDate  = "";
+
 $getStar[0]['img'] = "";
-$getStar[0]['name'] = "";
+$getStar[0]['nameVi'] = "";
 $getStar[0]['nameEN'] = "";
 $getStar[0]['firstDate'] = "";
 $getStar[0]['lastDate'] = "";
@@ -42,20 +47,10 @@ if(isset($_POST["day"]) && isset($_POST["mon"])){
 
 
 ?>
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="style.css">
-</head>
 
 <body>
     <div class="content">
-        <h2>Kiệt Thạch thuộc chòm sao nào ?</h2>
+        <h2>Bạn thuộc chòm sao nào ?</h2>
         <form method="POST" action="#" name="main-from">
             <div class="row">
                 <label>Ngày sinh:</label>
@@ -69,22 +64,21 @@ if(isset($_POST["day"]) && isset($_POST["mon"])){
                 <input type="submit" value="Click vào để xem chòm sao ^.^" name="submit">
             </div>
         </form>
-        <!-- <div class="row">
-                <img src="../Age/img/CungBachDuong.png" alt="CungBachDuong">
-                <p>Cung bach duong <span> (Aries : 21/3 - 20/4) </span></p>
-        </div> -->
-        <?php 
+       <div class="row">
+                <img src="../Age/img/<?php echo $getStar[0]['img']; ?>" alt="<?php echo $getStar[0]['img']; ?>">
+                <p><?php echo $getStar[0]['nameVi']?><span> (<?php echo $getStar[0]['nameEN']?> : <?php echo $getStar[0]['firstDate'] ?>  <?php echo $getStar[0]['lastDate'] ?>) </span></p>
+        </div> 
+        <!-- <?php 
         if ($getStar !== false) {
             $result =   '<div class="row">
                             <img src="../Age/img/'. $getStar[0]['img'] .'" alt="'. $getStar[0]['img'] .'">
-                            <p>'. $getStar[0]['name'] .' <span> ('.$getStar[0]['nameEN'].' : '.$getStar[0]['firstDate'] .' '. $getStar[0]['lastDate'].') </span></p>
+                            <p>'. $getStar[0]['nameVi'] .' <span> ('.$getStar[0]['nameEN'].' : '.$getStar[0]['firstDate'] .' -> '. $getStar[0]['lastDate'].') </span></p>
                         </div>';
             echo $result;
         } else {
-            
-            echo 'Nhập thông ngày tháng';
+            echo 'Nhập thông tin ngày tháng';
         }
-        ?>
+        ?> -->
     </div>
 </body>
 </html>

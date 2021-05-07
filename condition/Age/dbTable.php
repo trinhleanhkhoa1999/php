@@ -3,7 +3,7 @@
     function getDB($day,$mon){
         $connect = connectDB();
         $times = date('Y').'-'.$mon.'-'.$day;
-        $sql = "SELECT img, name, nameEN, firstDate, lastDate, step
+        $sql = "SELECT img, nameVi, nameEN, firstDate, lastDate, step
                 FROM `table1` WHERE 
                 (STR_TO_DATE('$times','%Y-%m-%d') BETWEEN STR_TO_DATE(CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate),'%Y-%m-%d') AND STR_TO_DATE(DATE_ADD(CONCAT(DATE_FORMAT(now(),'%Y'),'-',lastDate),INTERVAL `step` YEAR),'%Y-%m-%d')) OR
                 (STR_TO_DATE('$times','%Y-%m-%d') BETWEEN STR_TO_DATE(DATE_ADD(CONCAT(DATE_FORMAT(now(),'%Y'),'-',firstDate),INTERVAL -`step` YEAR),'%Y-%m-%d') AND STR_TO_DATE(CONCAT(DATE_FORMAT(now(),'%Y'),'-',lastDate),'%Y-%m-%d')) ";
